@@ -4,19 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" href="main.css">
+
   <title>Dog Pix</title>
 </head>
 <body>
   <section>
     <h1>How many dogs do you want?</h1>
-    <form>
-      <input type="text">
-      <input type="submit" value="Get some dog pix bro">
+    <form id="form">
+      <input type="integer" placeholder="Amount" default="3" class="dogPicAmount">
+      <input type="submit" class="find-dogs" value="Show me the puppies!">
     </form>
-    <section class="results">
+    <section class="results hidden">
       <h1>The flippin' cutest!</h1>
       <img alt="results dog photo" class="results-photo">
     </section>
   </section>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+  crossorigin="anonymous"></script>
+  <script src="index.js"></script>
 </body>
 </html>
