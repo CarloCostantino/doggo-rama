@@ -1,7 +1,7 @@
 'use strict';
 
 function getImage() {
-    let breed = document.querySelector(".dogPicAmount").value
+    let breed = document.querySelector(".dogPicAmount").value.toLowerCase()
     fetch(`https://dog.ceo/api/breed/${breed}/images/random`)
       .then(responce => responce.json())
       .then(responceJson => {
