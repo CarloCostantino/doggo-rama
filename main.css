@@ -1,12 +1,43 @@
 * {
   box-sizing: border-box;
+  margin: 0;
 }
 
 body {
   display: flex;
   justify-content: center;
+  font-family: Helvetica, sans-serif;
+  text-align: center;
+}
+
+section {
+  margin-top: 40px;
+}
+
+form {
+  margin-top: 30px;
+}
+
+input {
+  padding: 10px;
+  font-size: 18px;
+  width: 200px;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+img {
+  margin-top: 30px;
+  max-width: 400px;
 }
 
 .hidden {
   visibility: hidden;
 }
+
