@@ -1,26 +1,28 @@
+'use strict';
+
 function getImage() {
     let breed = document.querySelector(".dogPicAmount").value
     fetch(`https://dog.ceo/api/breed/${breed}/images/random`)
-    .then(responce => responce.json())
-    .then(responceJson => 
-      displayResults(responceJson, breed)
-    )
-    // .catch(responceJson => {
-    //   if (responceJson.status === "error") {
-    //     alert("Breed was not found")
-    //   }
-    // })
-    console.log("submit was heard and the value is " + breed) 
+      .then(responce => responce.json())
+      .then(responceJson => {
+        handleInput(responceJson, breed)
+      })
+      .catch(error => {
+          alert("Breed was not recognized :( ")
+      })
 }
 
+function handleInput(responceJson, breed) {
+  if (responceJson.status === "success") {
+    displayResults(responceJson, breed)
+    } else {
+      throw new Error
+    }
+}
 
 function displayResults(responceJson, breed) {
-  let imgString = `<img alt="photo of ${breed}" class="results-photo" src="${responceJson.message}">`
-
-  $(".results-picture").replaceWith(imgString);
+  $(".results-picture").replaceWith(`<img alt="photo of ${breed}" class="results-picture" src="${responceJson.message}">`);
   $("section.results").removeClass("hidden");
-
-  console.log("replaceWith ran " + imgString)
 }
 
 function watchForm() {
@@ -28,7 +30,6 @@ function watchForm() {
     event.preventDefault();
     getImage();
   })
-  console.log("watching for submit")
 }
 
 $(watchForm);
