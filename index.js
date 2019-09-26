@@ -1,28 +1,34 @@
-function handleSubmit() {
-  $("#form").submit(function(event) {
-    event.preventDefault();
-
-    document.querySelector(".dogPicAmount").defaultValue = 3
-    let amount = document.querySelector(".dogPicAmount").value
-
-    placeImages(amount);
-    console.log("submit was heard and the value is " + amount) 
-  })
-}
-
-function placeImages(amount) {
-  fetch(`https://dog.ceo/api/breeds/image/random/${amount}`)
+function getImage() {
+    let breed = document.querySelector(".dogPicAmount").value
+    fetch(`https://dog.ceo/api/breed/${breed}/images/random`)
     .then(responce => responce.json())
-    .then(responceJson => {
-      responceJson.message.map(function(image) {
-        console.log(image);
-      })
-    })
+    .then(responceJson => 
+      displayResults(responceJson, breed)
+    )
+    // .catch(responceJson => {
+    //   if (responceJson.status === "error") {
+    //     alert("Breed was not found")
+    //   }
+    // })
+    console.log("submit was heard and the value is " + breed) 
 }
 
-function startDogPixApp() {
-  handleSubmit();
-  console.log("startDogPixApp ran")
+
+function displayResults(responceJson, breed) {
+  let imgString = `<img alt="photo of ${breed}" class="results-photo" src="${responceJson.message}">`
+
+  $(".results-picture").replaceWith(imgString);
+  $("section.results").removeClass("hidden");
+
+  console.log("replaceWith ran " + imgString)
 }
 
-$(startDogPixApp);
+function watchForm() {
+  $("#form").submit(event => {
+    event.preventDefault();
+    getImage();
+  })
+  console.log("watching for submit")
+}
+
+$(watchForm);
